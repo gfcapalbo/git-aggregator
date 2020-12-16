@@ -294,6 +294,10 @@ class Repo(object):
     def push(self):
         remote = self.target['remote']
         branch = self.target['branch']
+        if remote is None:
+            raise GitAggregatorException(
+                "Cannot push %s, no target remote configured" % branch
+            )
         logger.info("Push %s to %s", branch, remote)
         self.log_call(
             ['git', 'push', '-f', remote, "HEAD:%s" % branch], cwd=self.cwd
