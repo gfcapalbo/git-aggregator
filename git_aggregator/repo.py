@@ -296,7 +296,9 @@ class Repo(object):
         remote = self.target['remote']
         branch = self.target['branch']
         logger.info("Push %s to %s", branch, remote)
-        self.log_call(['git', 'push', '-f', remote, "HEAD:%s" % branch], cwd=self.cwd)
+        self.log_call(
+            ['git', 'push', '-f', remote, "HEAD:%s" % branch], cwd=self.cwd
+        )
 
     def _check_status(self):
         """Check repo status and except if dirty."""
