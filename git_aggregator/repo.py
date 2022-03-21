@@ -347,7 +347,8 @@ class Repo(object):
             self.log_call(cmd, shell=True, cwd=self.cwd)
 
     def _merge(self, merge):
-        cmd = ("git", "merge")
+        logger.info("Pull %s, %s", merge["remote"], merge["ref"])
+        cmd = ("git", "pull", "--no-ff")
         if self.git_version >= (1, 7, 10):
             # --edit and --no-edit appear with Git 1.7.10
             # see Documentation/RelNotes/1.7.10.txt of Git
